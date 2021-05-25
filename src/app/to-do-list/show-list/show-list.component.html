@@ -1,0 +1,68 @@
+<body>
+  <div class="card">
+    <div class="card__header">
+      <img src="../../../assets/images/X2oObC4.png" />
+    </div>
+
+    <div class="card__body">
+      <div class="card__content">
+        <div class="card__title">
+          <h2>My Tasks</h2>
+          <p>September 9,2020</p>
+        </div>
+        <div class="card__add">
+          <input
+            id="newTask"
+            type="text"
+            placeholder="Enter an activity..."
+            [(ngModel)]="inputTodo"
+            name="name"
+          />
+          <button id="addItem" (click)="addTodo()">
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+        <div id="notiInput" class="alert-danger" style="display: none"></div>
+        <div
+          id="duplicateInput"
+          class="alert-danger"
+          style="display: none"
+        ></div>
+
+        <div class="card__todo" *ngFor="let todo of todos; let i = index">
+          <!-- Uncompleted tasks -->
+          <div *ngIf="!todo.completed">
+            <ul id="todo" class="todo">
+              <li>
+                <p>{{ todo.content }}</p>
+                <button id="deleteButton" (click)="deleteTask(i)">
+                  <i class="fa fa-trash"></i>
+                </button>
+                <button id="checkButton" (click)="updateTask(i)">
+                  <i class="fa fa-check"></i>
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Completed tasks -->
+          <div *ngIf="todo.completed">
+            <ul class="todo" id="completed">
+              <li style="text-decoration: line-through">
+                <p style="color: #25b99a">
+                  {{ todo.content }}
+                </p>
+                <button id="deleteButton" (click)="deleteTask(i)">
+                  <i class="fa fa-trash"></i>
+                </button>
+                <button id="checkButton" (click)="updateTask(i)">
+                  <i class="fa fa-check"></i>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
